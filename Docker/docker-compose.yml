@@ -1,0 +1,34 @@
+#docker documentation website https://www.section.io/engineering-education/dockerized-php-apache-and-mysql-container-development-environment/ 
+version: '3.8'
+services:
+    php-apache-environment:
+        container_name: php-apacheFinal
+        build:
+            context: ./php
+            dockerfile: Dockerfile
+        depends_on:
+            - db
+        volumes:
+            - ./php/src:/var/www/html/
+        ports:
+            - 7000:80
+    db:
+        container_name: dbFinal
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: assignment1
+            MYSQL_USER: jagadish
+            MYSQL_PASSWORD: pass
+        ports:
+            - "8906:3306"
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - '7080:80'
+        restart: always
+        environment:
+            PMA_HOST: db
+        depends_on:
+            - db
