@@ -1,29 +1,30 @@
 <?php
-    session_start();
-    
+
+session_start();
+
 ?>
 
 <!--Page heading-->
 <?php
-    $pageTitle = "Admin Articles";
+    $pageTitle = "View Articles";
     $cssPath = "";
 
-    require 'BasicTemplate/head.php';
+    require 'head.php';
 ?>
 
 <!--Constant page title-->
 <?php
-    require 'BasicTemplate/heading.php';
+    require 'heading.php';
 ?>
 
 <!--Navigation menu for latest article and category-->
 <?php
-    require 'BasicTemplate/userViewArticle.php';
+    require 'userViewArticle.php';
 ?>
 
 <!--Navigation for user activities-->
 <?php
-    require 'BasicTemplate/userNavigation.php';
+    require 'userNavigation.php';
 ?>
 
 <?php
@@ -31,35 +32,28 @@
     if(isset($_GET['activityReq'])){
         if($_GET['activityReq'] == 'registration'){
 
-            require 'AdditionalTemplate/registerForm.php';
+            require 'registerForm.php';
         }
         else if($_GET['activityReq'] == 'login'){
 
-            require 'AdditionalTemplate/loginForm.php';
+            require 'loginForm.php';
         }
         else if($_GET['activityReq'] == 'viewSelectedArticel'){
-            require 'AdditionalTemplate/categoryArticle.php';
+            require 'categoryArticle.php';
         }
-
+        else if($_GET['activityReq'] == 'fullArticle'){
+            require 'fullArticle.php';
+        }
     }
     else{
-        require 'AdditionalTemplate/latestArticle.php';
+        require 'latestArticle.php';
     }
 
     
 ?>
 
 
-
 <!--footer-->
 <?php
-    require 'BasicTemplate/endFoot.php';
-?>
-
-
-<a href="Admin/View/adminArticles.php">Admin Articles</a>
-
-
-<?php
-    session_destroy();
+    require 'endFoot.php';
 ?>
